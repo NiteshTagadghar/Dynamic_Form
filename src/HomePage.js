@@ -10,7 +10,7 @@ const HomePage = () => {
     { label: 'Last Name', type: 'text', value: '' }
   ]);
 
-  const [newField, setNewField] = useState({ label: '', type: 'text', options: [], value: '', checked: false });
+  const [newField, setNewField] = useState({ label: '', type: '', options: [], value: '', checked: false });
   const [showOptionsInput, setShowOptionsInput] = useState(false);
 
   const handleAddField = (e) => {
@@ -113,7 +113,7 @@ const HomePage = () => {
               </div>
             ) : field.type === 'dropdown' ? (
               <div className="space-y-2">
-                <label htmlFor="options" className="block">Options</label>
+                <label htmlFor="options" className="block">{field.label}</label>
                 <select
                   value={field.value}
                   required
@@ -125,6 +125,7 @@ const HomePage = () => {
                   id="options"
                   className="w-full border border-gray-300 rounded-md px-3 py-2"
                 >
+                  <option value="" disabled>Select</option>
                   {field.options.map((option, index) => (
                     <option key={index} value={option}>
                       {option}
